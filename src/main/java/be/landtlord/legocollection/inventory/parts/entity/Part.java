@@ -2,10 +2,7 @@ package be.landtlord.legocollection.inventory.parts.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -14,5 +11,11 @@ public class Part {
     @Id
     @Column(name ="part_num")
     private String partNumber;
-    //todo
+
+    private String name;
+
+    @ManyToOne
+    private PartCategory partCategory;
+
+    private String material;
 }
