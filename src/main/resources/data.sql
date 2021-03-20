@@ -1,3 +1,16 @@
+DROP TABLE IF EXISTS colors;
+DROP TABLE IF EXISTS elements;
+DROP TABLE IF EXISTS inventories;
+DROP TABLE IF EXISTS inventory_minifigs;
+DROP TABLE IF EXISTS inventory_parts;
+DROP TABLE IF EXISTS inventory_sets;
+DROP TABLE IF EXISTS minifigs;
+DROP TABLE IF EXISTS part_categories;
+DROP TABLE IF EXISTS part_categories;
+DROP TABLE IF EXISTS parts;
+DROP TABLE IF EXISTS sets;
+DROP TABLE IF EXISTS themes;
+
 create table colors
 (
     id       int  not null
