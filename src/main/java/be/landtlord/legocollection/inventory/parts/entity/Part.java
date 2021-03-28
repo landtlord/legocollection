@@ -14,8 +14,10 @@ public class Part {
 
     private String name;
 
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "part_cat_id", nullable = false)
     private PartCategory partCategory;
 
+    @Column(name ="part_material")
     private String material;
 }
