@@ -14,6 +14,10 @@ public class SetInventory {
     private Long id;
 
     @OneToOne
+    @JoinColumn(name="inventory_id")
+    private Inventory inventory;
+
+    @OneToOne
     @JoinColumn(name = "set_num", nullable = false)
     private Set set;
 }
