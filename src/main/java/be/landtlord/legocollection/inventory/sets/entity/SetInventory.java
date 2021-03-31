@@ -1,5 +1,6 @@
-package be.landtlord.legocollection.inventory.inventories.entity;
+package be.landtlord.legocollection.inventory.sets.entity;
 
+import be.landtlord.legocollection.inventory.inventories.entity.Inventory;
 import be.landtlord.legocollection.inventory.sets.entity.Set;
 import lombok.Data;
 

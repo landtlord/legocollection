@@ -1,5 +1,6 @@
-package be.landtlord.legocollection.inventory.inventories.entity;
+package be.landtlord.legocollection.inventory.parts.entity;
 
+import be.landtlord.legocollection.inventory.inventories.entity.Inventory;
 import be.landtlord.legocollection.inventory.parts.entity.Color;
 import be.landtlord.legocollection.inventory.parts.entity.Part;
 import lombok.Data;

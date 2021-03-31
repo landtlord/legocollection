@@ -15,7 +15,7 @@ public class Theme {
     private String name;
 
     @OneToOne
-    @JoinColumn(name = "parent_id", nullable = false)
+    @JoinColumn(name = "parent_id")
     private Theme parent;
 
 }

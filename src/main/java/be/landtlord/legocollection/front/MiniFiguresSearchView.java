@@ -1,11 +1,7 @@
 package be.landtlord.legocollection.front;
 
-import be.landtlord.legocollection.inventory.inventories.boundary.InventoryRepository;
 import be.landtlord.legocollection.inventory.inventories.boundary.InventoryService;
-import be.landtlord.legocollection.inventory.sets.boundary.SetInventoryRepository;
-import be.landtlord.legocollection.inventory.inventories.entity.Inventory;
-import be.landtlord.legocollection.inventory.sets.entity.Set;
-import be.landtlord.legocollection.inventory.sets.entity.SetInventory;
+import be.landtlord.legocollection.inventory.minifigures.entity.MiniFigure;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -18,27 +14,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Route
-public class SetSearchView extends MainView {
+public class MiniFiguresSearchView extends MainView {
 
     private VerticalLayout content = new VerticalLayout();
     private HorizontalLayout searchBar = new HorizontalLayout();
-    private Grid<Set> setsGrid = new Grid(Set.class);
+    private Grid<MiniFigure> grid = new Grid(MiniFigure.class);
 
     private InventoryService inventoryService;
 
     @Autowired
-    public SetSearchView(InventoryService inventoryService) {
+    public MiniFiguresSearchView(InventoryService inventoryService) {
         this.inventoryService = inventoryService;
         setGrid();
         setSearchBar();
-        content.add(searchBar, setsGrid);
+        content.add(searchBar, grid);
         add(content);
     }
 
     private void setGrid() {
-        setsGrid.setHeightByRows(true);
-        setsGrid.setVisible(false);
-        setsGrid.addItemClickListener(e-> UI.getCurrent().navigate(SetView.class, e.getItem().getSetNumber()));
+        grid.setHeightByRows(true);
+        grid.setVisible(false);
+        grid.addItemClickListener(e-> UI.getCurrent().navigate(SetView.class, e.getItem().getMiniFigureNumber()));
     }
 
     private void setSearchBar() {
@@ -47,15 +43,15 @@ public class SetSearchView extends MainView {
         Button searchButton = new Button("Zoeken");
         searchButton.addClickListener(event -> setGridData(search.getValue()));
         searchButton.setWidth("175px");
-        search.setPlaceholder("Set nummer");
+        search.setPlaceholder("Mini figure nummer");
         search.setWidth("60%");
         setWidthFull();
         searchBar.add(search, searchButton);
     }
 
     private void setGridData(String setNumber) {
-        List<Set> sets = inventoryService.findBySetNumberContains(setNumber);
-        setsGrid.setItems(sets);
-        setsGrid.setVisible(true);
+        List<MiniFigure> miniFigures = inventoryService.findByMiniFigureNumberContains(setNumber);
+        grid.setItems(miniFigures);
+        grid.setVisible(true);
     }
 }

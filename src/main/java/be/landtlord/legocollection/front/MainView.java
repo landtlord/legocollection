@@ -24,6 +24,7 @@ public class MainView extends HorizontalLayout {
         sets.addClickListener(e-> UI.getCurrent().navigate(SetSearchView.class));
         Button mySets = getButton("mijn sets");
         Button miniFigures= getButton("minifiguren");
+        miniFigures.addClickListener(e-> UI.getCurrent().navigate(MiniFiguresSearchView.class));
         Button myMiniFigures = getButton("mijn minifiguren");
         Button parts = getButton("blokken");
         Button myParts = getButton("mijn blokken");

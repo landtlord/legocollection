@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Table(name = "sets")
 public class Set {
     @Id
+    @Column(name ="set_num")
     private String setNumber;
 
     private String name;

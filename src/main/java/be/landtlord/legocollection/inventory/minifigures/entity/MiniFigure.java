@@ -13,9 +13,10 @@ import javax.persistence.Table;
 public class MiniFigure {
     @Id
     @Column(name ="fig_num")
-    private String MiniFigureNumber;
+    private String miniFigureNumber;
 
     private String name;
 
+    @Column(name ="num_parts")
     private int numberOfParts;
 }
