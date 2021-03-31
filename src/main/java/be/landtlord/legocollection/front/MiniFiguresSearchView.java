@@ -34,7 +34,7 @@ public class MiniFiguresSearchView extends MainView {
     private void setGrid() {
         grid.setHeightByRows(true);
         grid.setVisible(false);
-        grid.addItemClickListener(e-> UI.getCurrent().navigate(SetView.class, e.getItem().getMiniFigureNumber()));
+        grid.addItemClickListener(e-> UI.getCurrent().navigate(MiniFigureView.class, e.getItem().getMiniFigureNumber()));
     }
 
     private void setSearchBar() {

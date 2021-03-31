@@ -32,4 +32,9 @@ public class InventoryServiceImp implements InventoryService{
     public List<MiniFigure> findByMiniFigureNumberContains(String miniFigureNumber) {
         return miniFiguresRepository.findAllByMiniFigureNumberContains(miniFigureNumber);
     }
+
+    @Override
+    public MiniFigure getMiniFigureBy(String miniFigureNumber) {
+        return miniFiguresRepository.findById(miniFigureNumber).orElseThrow();
+    }
 }

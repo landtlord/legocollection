@@ -14,4 +14,6 @@ public interface InventoryService {
     Set getSetBy(String setNumber);
 
     List<MiniFigure> findByMiniFigureNumberContains(String setNumber);
+
+    MiniFigure getMiniFigureBy(String miniFigureNumber);
 }
