@@ -17,5 +17,4 @@ public class Inventory {
     private String setNumber;
 
     private int version;
-
 }

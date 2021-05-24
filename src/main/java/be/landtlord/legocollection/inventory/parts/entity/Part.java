@@ -1,5 +1,6 @@
 package be.landtlord.legocollection.inventory.parts.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 public class Part {
     @Id
     @Column(name ="part_num")
+    @JsonProperty("part_num")
     private String partNumber;
 
     private String name;
@@ -20,4 +22,8 @@ public class Part {
 
     @Column(name ="part_material")
     private String material;
+
+    @Column(name = "image_url")
+    @JsonProperty("part_img_url")
+    private String imageUrl;
 }
