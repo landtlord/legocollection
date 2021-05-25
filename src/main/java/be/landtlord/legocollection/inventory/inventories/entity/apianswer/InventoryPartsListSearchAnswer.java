@@ -1,6 +1,6 @@
-package be.landtlord.legocollection.inventory.inventories.entity;
+package be.landtlord.legocollection.inventory.inventories.entity.apianswer;
 
-import be.landtlord.legocollection.inventory.minifigures.entity.MiniFigure;
+import be.landtlord.legocollection.inventory.inventories.entity.InventoryParts;
 import be.landtlord.legocollection.inventory.parts.entity.Part;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
@@ -11,6 +11,6 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @NoArgsConstructor
-public class MiniFigureListSearchAnswer {
-    List<MiniFigure> results;
+public class InventoryPartsListSearchAnswer {
+    List<InventoryParts> results;
 }

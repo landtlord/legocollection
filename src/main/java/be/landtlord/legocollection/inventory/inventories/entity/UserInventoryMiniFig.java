@@ -7,27 +7,29 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "user_invent_part")
-public class UserInventoryPart {
+@Table(name = "user_invent_minifig")
+public class UserInventoryMiniFig {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "inventory_id")
+    private Inventory inventory;
 
     @ManyToOne
     @JoinColumn(name = "user_invent_set_id")
     private UserInventorySet userInventorySet;
 
     @ManyToOne
-    @JoinColumn(name = "user_invent_minifig_id")
-    private UserInventoryMiniFig userInventoryMiniFig;
-
-    @ManyToOne
-    @JoinColumn(name = "inventory_parts_id", nullable = false)
-    private InventoryParts inventoryParts;
+    @JoinColumn(name = "inventory_minifig_id")
+    private InventoryMiniFigure inventoryMiniFigure;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    private boolean complete;
 
     private int quantity;
 

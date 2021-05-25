@@ -6,4 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
     User authenticate(String userName, String passWord);
+
+    User update(User user);
 }

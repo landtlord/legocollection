@@ -33,6 +33,6 @@ public class MySetGeneralInfo extends HorizontalLayout {
         if (Objects.nonNull(set.getImageUrl())) {
             setImage.setSrc(set.getImageUrl());
         }
-        info.add(new Span("setnummer: " + set.getSetNumber()));
+        info.add(new Span("setnummer: " + set.getSetNumber()), new Span("setnaam: " + set.getName()));
     }
 }

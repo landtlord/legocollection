@@ -1,6 +1,7 @@
 package be.landtlord.legocollection.inventory.inventories.boundary;
 
 import be.landtlord.legocollection.inventory.inventories.entity.InventoryParts;
+import be.landtlord.legocollection.inventory.inventories.entity.UserInventoryMiniFig;
 import be.landtlord.legocollection.inventory.inventories.entity.UserInventoryPart;
 import be.landtlord.legocollection.inventory.inventories.entity.UserInventorySet;
 import be.landtlord.legocollection.inventory.minifigures.entity.MiniFigure;
@@ -28,15 +29,31 @@ public interface InventoryService {
 
     List<InventoryParts> getPartsForSetNumber(String setNumber);
 
+    List<InventoryParts> getPartsForMiniFigNumber(String miniFigNumber);
+
     UserInventorySet addToMyList(Set set, User user);
+
+    UserInventoryMiniFig addToMyList(MiniFigure set, User user);
 
     UserInventorySet getUserInventorySetBy(String id);
 
+    UserInventoryMiniFig getUserInventoryMiniFigureBy(String id);
+
     List<UserInventorySet> getUserInventorySetByUser(User user);
 
+    List<UserInventoryMiniFig> getUserInventoryMiniFigureByUser(User user);
+
     List<UserInventoryPart> getUserInventoryPartsByUserInventorySet(UserInventorySet userInventorySet);
+
+    List<UserInventoryPart> getUserInventoryPartsByUserInventoryMiniFigure(UserInventoryMiniFig userInventoryMiniFig);
 
     UserInventoryPart updateUserInventoryPart(UserInventoryPart userInventoryPart);
 
     List<UserInventoryPart> getUserInventoryPartWithStockByUser(User user);
+
+    List<UserInventorySet> getUserInventorySetByUserAndSetNumberContains(User user, String setNumber);
+
+    List<UserInventoryMiniFig> getUserInventoryMiniFigureByUserAndFigNumberContains(User user, String setNumber);
+
+    List<UserInventoryPart> getUserInventoryPartByUserAndPartNumberContains(User user, String partNumber);
 }

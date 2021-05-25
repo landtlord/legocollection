@@ -3,6 +3,7 @@ package be.landtlord.legocollection.user.control;
 import be.landtlord.legocollection.user.boundary.UserRepository;
 import be.landtlord.legocollection.user.boundary.UserService;
 import be.landtlord.legocollection.user.entity.User;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +25,16 @@ public class UserServiceImpl implements UserService {
         if (user.isEmpty()) {
             return null;
         }
-        if (!passWord.equals(user.get().getPasswordHash())){
+        String md5Hex = DigestUtils
+                .md5Hex(passWord).toUpperCase();
+        if (!md5Hex.equals(user.get().getPasswordHash())){
             return null;
         }
         return user.get();
+    }
+
+    @Override
+    public User update(User user) {
+        return userRepository.save(user);
     }
 }
