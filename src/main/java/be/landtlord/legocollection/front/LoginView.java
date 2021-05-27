@@ -17,7 +17,7 @@ import static java.util.Objects.nonNull;
 @Route("")
 @CssImport("./styles/shared-styles.css")
 public class LoginView extends HorizontalLayout {
-    private VerticalLayout loginscreen = new VerticalLayout();
+    private final VerticalLayout loginscreen = new VerticalLayout();
 
     @Autowired
     private UserService userService;

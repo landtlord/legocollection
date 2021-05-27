@@ -1,7 +1,6 @@
 package be.landtlord.legocollection.front.minifigure;
 
 import be.landtlord.legocollection.front.MainView;
-import be.landtlord.legocollection.inventory.inventories.boundary.InventoryService;
 import be.landtlord.legocollection.inventory.minifigures.boundary.MiniFigureService;
 import be.landtlord.legocollection.inventory.minifigures.entity.MiniFigure;
 import com.vaadin.flow.component.UI;
@@ -20,11 +19,11 @@ import java.util.Objects;
 @Route
 public class MiniFiguresSearchView extends MainView {
 
-    private VerticalLayout content = new VerticalLayout();
-    private HorizontalLayout searchBar = new HorizontalLayout();
-    private Grid<MiniFigure> grid = new Grid();
+    private final VerticalLayout content = new VerticalLayout();
+    private final HorizontalLayout searchBar = new HorizontalLayout();
+    private final Grid<MiniFigure> grid = new Grid();
 
-    private MiniFigureService miniFigureService;
+    private final MiniFigureService miniFigureService;
 
     @Autowired
     public MiniFiguresSearchView(MiniFigureService miniFigureService) {
@@ -38,7 +37,7 @@ public class MiniFiguresSearchView extends MainView {
     private void setGrid() {
         grid.setHeightByRows(true);
         grid.setVisible(false);
-        grid.addItemClickListener(e-> UI.getCurrent().navigate(MiniFigureView.class, e.getItem().getMiniFigureNumber()));
+        grid.addItemClickListener(e -> UI.getCurrent().navigate(MiniFigureView.class, e.getItem().getMiniFigureNumber()));
 
         grid.addComponentColumn(this::setImageOnGrid).setHeader("afbeelding");
         grid.addColumn(MiniFigure::getName).setHeader("Naam");

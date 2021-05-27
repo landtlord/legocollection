@@ -9,12 +9,11 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Objects;
 
 public class MyPartListComponent extends Grid<UserInventoryPart> {
-    private InventoryService inventoryService;
+    private final InventoryService inventoryService;
 
     public MyPartListComponent(InventoryService inventoryService) {
         this.inventoryService = inventoryService;

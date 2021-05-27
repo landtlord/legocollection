@@ -15,18 +15,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Route
 public class MiniFigureView extends MainView implements HasUrlParameter<String> {
-    private VerticalLayout content = new VerticalLayout();
+    private final VerticalLayout content = new VerticalLayout();
 
     private MiniFigure miniFigure;
 
-    private MiniFigureGeneralInfo generalInfo;
+    private final MiniFigureGeneralInfo generalInfo;
 
-    private PartsListComponent partsGrid;
+    private final PartsListComponent partsGrid;
 
 
-    private InventoryService inventoryService;
+    private final InventoryService inventoryService;
 
-    private MiniFigureService miniFigureService;
+    private final MiniFigureService miniFigureService;
 
     @Autowired
     public MiniFigureView(InventoryService inventoryService, MiniFigureService miniFigureService) {

@@ -5,7 +5,6 @@ import be.landtlord.legocollection.front.minifigure.MyMiniFiguresSearchView;
 import be.landtlord.legocollection.front.parts.MyPartsSearchView;
 import be.landtlord.legocollection.front.parts.PartsSearchView;
 import be.landtlord.legocollection.front.set.MySetSearchView;
-import be.landtlord.legocollection.front.set.SetGeneralInfo;
 import be.landtlord.legocollection.front.set.SetSearchView;
 import be.landtlord.legocollection.user.entity.User;
 import com.vaadin.flow.component.UI;

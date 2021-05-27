@@ -1,7 +1,6 @@
 package be.landtlord.legocollection.inventory.inventories.entity.apianswer;
 
 import be.landtlord.legocollection.inventory.minifigures.entity.MiniFigure;
-import be.landtlord.legocollection.inventory.parts.entity.Part;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;

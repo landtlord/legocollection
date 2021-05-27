@@ -1,7 +1,6 @@
 package be.landtlord.legocollection.inventory.sets.entity;
 
 import be.landtlord.legocollection.inventory.inventories.entity.Inventory;
-import be.landtlord.legocollection.inventory.sets.entity.Set;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,7 +14,7 @@ public class SetInventory {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name="inventory_id")
+    @JoinColumn(name = "inventory_id")
     private Inventory inventory;
 
     @OneToOne

@@ -1,10 +1,8 @@
 package be.landtlord.legocollection.front.parts;
 
 import be.landtlord.legocollection.front.MainView;
-import be.landtlord.legocollection.inventory.inventories.boundary.InventoryService;
 import be.landtlord.legocollection.inventory.parts.boundary.PartsService;
 import be.landtlord.legocollection.inventory.parts.entity.Part;
-import be.landtlord.legocollection.inventory.sets.entity.Set;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -21,11 +19,11 @@ import java.util.Objects;
 @Route
 public class PartsSearchView extends MainView {
 
-    private VerticalLayout content = new VerticalLayout();
-    private HorizontalLayout searchBar = new HorizontalLayout();
-    private Grid<Part> partsGrid = new Grid();
+    private final VerticalLayout content = new VerticalLayout();
+    private final HorizontalLayout searchBar = new HorizontalLayout();
+    private final Grid<Part> partsGrid = new Grid();
 
-    private PartsService partService;
+    private final PartsService partService;
 
     @Autowired
     public PartsSearchView(PartsService partService) {

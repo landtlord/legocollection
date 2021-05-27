@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User authenticate(String userName, String passWord) {
-        if (isNull(userName) || isNull(passWord)){
+        if (isNull(userName) || isNull(passWord)) {
             return null;
         }
         Optional<User> user = userRepository.findByUserName(userName);
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
         }
         String md5Hex = DigestUtils
                 .md5Hex(passWord).toUpperCase();
-        if (!md5Hex.equals(user.get().getPasswordHash())){
+        if (!md5Hex.equals(user.get().getPasswordHash())) {
             return null;
         }
         return user.get();

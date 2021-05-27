@@ -23,7 +23,7 @@ public class Theme {
     public String toString() {
         String theme = name;
 
-        if (Objects.nonNull(parent)){
+        if (Objects.nonNull(parent)) {
             theme = theme + ", onderdeel van " + parent;
         }
 

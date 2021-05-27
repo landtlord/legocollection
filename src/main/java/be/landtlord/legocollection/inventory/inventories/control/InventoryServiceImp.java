@@ -3,24 +3,17 @@ package be.landtlord.legocollection.inventory.inventories.control;
 import be.landtlord.legocollection.inventory.inventories.boundary.*;
 import be.landtlord.legocollection.inventory.inventories.entity.*;
 import be.landtlord.legocollection.inventory.inventories.entity.apianswer.InventoryPartsListSearchAnswer;
-import be.landtlord.legocollection.inventory.inventories.entity.apianswer.MiniFigureListSearchAnswer;
-import be.landtlord.legocollection.inventory.inventories.entity.apianswer.PartListSearchAnswer;
-import be.landtlord.legocollection.inventory.inventories.entity.apianswer.SetListSearchAnswer;
-import be.landtlord.legocollection.inventory.minifigures.boundary.MiniFiguresRepository;
 import be.landtlord.legocollection.inventory.minifigures.entity.MiniFigure;
 import be.landtlord.legocollection.inventory.parts.boundary.PartsRepository;
 import be.landtlord.legocollection.inventory.parts.entity.Part;
-import be.landtlord.legocollection.inventory.sets.boundary.SetRepository;
 import be.landtlord.legocollection.inventory.sets.entity.Set;
 import be.landtlord.legocollection.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 

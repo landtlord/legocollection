@@ -23,13 +23,13 @@ import java.util.Objects;
 @Route
 public class MyMiniFiguresSearchView extends MainView {
 
-    private VerticalLayout content = new VerticalLayout();
-    private HorizontalLayout searchBar = new HorizontalLayout();
-    private Grid<UserInventoryMiniFig> setsGrid = new Grid();
+    private final VerticalLayout content = new VerticalLayout();
+    private final HorizontalLayout searchBar = new HorizontalLayout();
+    private final Grid<UserInventoryMiniFig> setsGrid = new Grid();
 
-    private MiniFigureService miniFigureService;
+    private final MiniFigureService miniFigureService;
 
-    private InventoryService inventoryService;
+    private final InventoryService inventoryService;
 
     @Autowired
     public MyMiniFiguresSearchView(MiniFigureService miniFigureService, InventoryService inventoryService) {
@@ -43,7 +43,7 @@ public class MyMiniFiguresSearchView extends MainView {
 
     private void setGrid() {
         setsGrid.setHeightByRows(true);
-        setsGrid.addItemClickListener(e-> UI.getCurrent().navigate(MyMiniFigureView.class, e.getItem().getId().toString()));
+        setsGrid.addItemClickListener(e -> UI.getCurrent().navigate(MyMiniFigureView.class, e.getItem().getId().toString()));
 
         setsGrid.addColumn(UserInventoryMiniFig::getId).setHeader("id");
         setsGrid.addComponentColumn(this::setImageOnGrid).setHeader("afbeelding");

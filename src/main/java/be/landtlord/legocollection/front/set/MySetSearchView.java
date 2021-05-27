@@ -23,16 +23,16 @@ import java.util.Objects;
 @Route
 public class MySetSearchView extends MainView {
 
-    private VerticalLayout content = new VerticalLayout();
-    private HorizontalLayout searchBar = new HorizontalLayout();
-    private Grid<UserInventorySet> setsGrid = new Grid();
+    private final VerticalLayout content = new VerticalLayout();
+    private final HorizontalLayout searchBar = new HorizontalLayout();
+    private final Grid<UserInventorySet> setsGrid = new Grid();
 
-    private InventoryService inventoryService;
+    private final InventoryService inventoryService;
 
-    private SetService setService;
+    private final SetService setService;
 
     @Autowired
-    public MySetSearchView(InventoryService inventoryService,SetService setService) {
+    public MySetSearchView(InventoryService inventoryService, SetService setService) {
         this.inventoryService = inventoryService;
         this.setService = setService;
         setGrid();
@@ -43,7 +43,7 @@ public class MySetSearchView extends MainView {
 
     private void setGrid() {
         setsGrid.setHeightByRows(true);
-        setsGrid.addItemClickListener(e-> UI.getCurrent().navigate(MySetView.class, e.getItem().getId().toString()));
+        setsGrid.addItemClickListener(e -> UI.getCurrent().navigate(MySetView.class, e.getItem().getId().toString()));
 
         setsGrid.addColumn(UserInventorySet::getId).setHeader("id");
         setsGrid.addComponentColumn(this::setImageOnGrid).setHeader("afbeelding");

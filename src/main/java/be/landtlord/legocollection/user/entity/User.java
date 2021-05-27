@@ -1,6 +1,5 @@
 package be.landtlord.legocollection.user.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.Column;

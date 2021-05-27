@@ -1,8 +1,6 @@
 package be.landtlord.legocollection.inventory.parts.entity;
 
 import be.landtlord.legocollection.inventory.inventories.entity.Inventory;
-import be.landtlord.legocollection.inventory.parts.entity.Color;
-import be.landtlord.legocollection.inventory.parts.entity.Part;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,7 +14,7 @@ public class PartsInventory {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name="inventory_id")
+    @JoinColumn(name = "inventory_id")
     private Inventory inventory;
 
     @OneToOne

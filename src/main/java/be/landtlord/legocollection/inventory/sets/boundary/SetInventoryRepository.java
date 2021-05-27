@@ -7,4 +7,4 @@ import java.util.List;
 
 public interface SetInventoryRepository extends CrudRepository<SetInventory, String> {
     List<SetInventory> findBySet_SetNumberContains(String setNumber);
-    }
+}

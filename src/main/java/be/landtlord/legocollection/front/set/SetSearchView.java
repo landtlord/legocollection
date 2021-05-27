@@ -1,7 +1,6 @@
 package be.landtlord.legocollection.front.set;
 
 import be.landtlord.legocollection.front.MainView;
-import be.landtlord.legocollection.inventory.inventories.boundary.InventoryService;
 import be.landtlord.legocollection.inventory.sets.boundary.SetService;
 import be.landtlord.legocollection.inventory.sets.entity.Set;
 import com.vaadin.flow.component.UI;
@@ -20,11 +19,11 @@ import java.util.Objects;
 @Route
 public class SetSearchView extends MainView {
 
-    private VerticalLayout content = new VerticalLayout();
-    private HorizontalLayout searchBar = new HorizontalLayout();
-    private Grid<Set> setsGrid = new Grid();
+    private final VerticalLayout content = new VerticalLayout();
+    private final HorizontalLayout searchBar = new HorizontalLayout();
+    private final Grid<Set> setsGrid = new Grid();
 
-    private SetService setService;
+    private final SetService setService;
 
     @Autowired
     public SetSearchView(SetService setService) {
@@ -38,7 +37,7 @@ public class SetSearchView extends MainView {
     private void setGrid() {
         setsGrid.setHeightByRows(true);
         setsGrid.setVisible(false);
-        setsGrid.addItemClickListener(e-> UI.getCurrent().navigate(SetView.class, e.getItem().getSetNumber()));
+        setsGrid.addItemClickListener(e -> UI.getCurrent().navigate(SetView.class, e.getItem().getSetNumber()));
 
         setsGrid.addComponentColumn(this::setImageOnGrid).setHeader("afbeelding");
         setsGrid.addColumn(Set::getName).setHeader("Naam");

@@ -10,6 +10,6 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @NoArgsConstructor
-public class SetListSearchAnswer{
+public class SetListSearchAnswer {
     List<Set> results;
 }

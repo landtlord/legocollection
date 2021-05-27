@@ -5,7 +5,6 @@ import be.landtlord.legocollection.inventory.inventories.entity.UserInventoryMin
 import be.landtlord.legocollection.inventory.inventories.entity.UserInventoryPart;
 import be.landtlord.legocollection.inventory.inventories.entity.UserInventorySet;
 import be.landtlord.legocollection.inventory.minifigures.entity.MiniFigure;
-import be.landtlord.legocollection.inventory.parts.entity.Part;
 import be.landtlord.legocollection.inventory.sets.entity.Set;
 import be.landtlord.legocollection.user.entity.User;
 import org.springframework.stereotype.Service;

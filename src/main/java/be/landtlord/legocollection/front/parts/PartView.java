@@ -1,7 +1,6 @@
 package be.landtlord.legocollection.front.parts;
 
 import be.landtlord.legocollection.front.MainView;
-import be.landtlord.legocollection.inventory.inventories.boundary.InventoryService;
 import be.landtlord.legocollection.inventory.parts.boundary.PartsService;
 import be.landtlord.legocollection.inventory.parts.entity.Part;
 import com.vaadin.flow.component.html.Image;
@@ -17,11 +16,11 @@ import java.util.Objects;
 
 @Route
 public class PartView extends MainView implements HasUrlParameter<String> {
-    private HorizontalLayout content = new HorizontalLayout();
+    private final HorizontalLayout content = new HorizontalLayout();
 
-    private VerticalLayout info = new VerticalLayout();
+    private final VerticalLayout info = new VerticalLayout();
 
-    private Image image= new Image();
+    private final Image image = new Image();
 
     private Part part;
 

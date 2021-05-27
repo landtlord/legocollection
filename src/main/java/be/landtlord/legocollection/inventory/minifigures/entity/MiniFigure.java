@@ -13,13 +13,13 @@ import javax.persistence.Table;
 @Table(name = "minifigs")
 public class MiniFigure {
     @Id
-    @Column(name ="fig_num")
+    @Column(name = "fig_num")
     @JsonProperty("set_num")
     private String miniFigureNumber;
 
     private String name;
 
-    @Column(name ="num_parts")
+    @Column(name = "num_parts")
     @JsonProperty("num_parts")
     private int numberOfParts;
 

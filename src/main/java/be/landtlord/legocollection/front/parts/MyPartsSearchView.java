@@ -21,11 +21,11 @@ import java.util.Objects;
 
 @Route
 public class MyPartsSearchView extends MainView {
-    private VerticalLayout content = new VerticalLayout();
-    private HorizontalLayout searchBar = new HorizontalLayout();
-    private Grid<UserInventoryPart> grid = new Grid();
+    private final VerticalLayout content = new VerticalLayout();
+    private final HorizontalLayout searchBar = new HorizontalLayout();
+    private final Grid<UserInventoryPart> grid = new Grid();
 
-    private InventoryService inventoryService;
+    private final InventoryService inventoryService;
 
     @Autowired
     public MyPartsSearchView(InventoryService inventoryService) {
@@ -39,7 +39,7 @@ public class MyPartsSearchView extends MainView {
 
     private void setGrid() {
         grid.setHeightByRows(true);
-        grid.addItemClickListener(e-> UI.getCurrent().navigate(MySetView.class, e.getItem().getId().toString()));
+        grid.addItemClickListener(e -> UI.getCurrent().navigate(MySetView.class, e.getItem().getId().toString()));
 
         grid.addColumn(UserInventoryPart::getId).setHeader("id");
         grid.addComponentColumn(this::setImageOnGrid).setHeader("afbeelding");

@@ -1,6 +1,5 @@
 package be.landtlord.legocollection.inventory.minifigures.entity;
 
-import be.landtlord.legocollection.inventory.minifigures.entity.MiniFigure;
 import be.landtlord.legocollection.inventory.parts.entity.PartsInventory;
 import lombok.Data;
 

@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "user_invent_part")
 public class UserInventoryPart {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne

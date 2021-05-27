@@ -1,6 +1,5 @@
 package be.landtlord.legocollection.front;
 
-import be.landtlord.legocollection.inventory.inventories.entity.UserInventoryPart;
 import be.landtlord.legocollection.user.boundary.UserService;
 import be.landtlord.legocollection.user.entity.User;
 import com.vaadin.flow.component.button.Button;
@@ -9,15 +8,14 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Route
 public class AccountView extends MainView {
-    private User user;
+    private final User user;
 
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public AccountView(UserService userService) {

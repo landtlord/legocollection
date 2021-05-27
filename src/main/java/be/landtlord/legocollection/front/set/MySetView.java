@@ -3,11 +3,9 @@ package be.landtlord.legocollection.front.set;
 import be.landtlord.legocollection.front.MainView;
 import be.landtlord.legocollection.front.parts.MyPartListComponent;
 import be.landtlord.legocollection.inventory.inventories.boundary.InventoryService;
-import be.landtlord.legocollection.inventory.inventories.entity.UserInventoryPart;
 import be.landtlord.legocollection.inventory.inventories.entity.UserInventorySet;
 import be.landtlord.legocollection.inventory.sets.boundary.SetService;
 import be.landtlord.legocollection.inventory.sets.entity.Set;
-import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
@@ -16,15 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Route
 public class MySetView extends MainView implements HasUrlParameter<String> {
-    private VerticalLayout content = new VerticalLayout();
+    private final VerticalLayout content = new VerticalLayout();
 
     private UserInventorySet userInventorySet;
 
-    private MySetGeneralInfo setGeneralInfo;
+    private final MySetGeneralInfo setGeneralInfo;
 
-    private InventoryService inventoryService;
+    private final InventoryService inventoryService;
 
-    private MyPartListComponent parts;
+    private final MyPartListComponent parts;
 
     @Autowired
     private SetService setService;

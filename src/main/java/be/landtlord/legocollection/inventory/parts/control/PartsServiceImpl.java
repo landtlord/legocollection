@@ -1,6 +1,5 @@
 package be.landtlord.legocollection.inventory.parts.control;
 
-import be.landtlord.legocollection.inventory.inventories.control.InventoryServiceImp;
 import be.landtlord.legocollection.inventory.inventories.entity.apianswer.PartListSearchAnswer;
 import be.landtlord.legocollection.inventory.parts.boundary.PartsRepository;
 import be.landtlord.legocollection.inventory.parts.boundary.PartsService;
