@@ -5,6 +5,7 @@ import be.landtlord.legocollection.front.parts.PartsListComponent;
 import be.landtlord.legocollection.inventory.inventories.boundary.InventoryService;
 import be.landtlord.legocollection.inventory.inventories.entity.InventoryParts;
 import be.landtlord.legocollection.inventory.parts.entity.Part;
+import be.landtlord.legocollection.inventory.sets.boundary.SetService;
 import be.landtlord.legocollection.inventory.sets.entity.Set;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Image;
@@ -28,6 +29,9 @@ public class SetView extends MainView implements HasUrlParameter<String> {
     private InventoryService inventoryService;
 
     @Autowired
+    private SetService setService;
+
+    @Autowired
     public SetView(InventoryService inventoryService) {
         this.inventoryService = inventoryService;
         generalInfo = new SetGeneralInfo(inventoryService);
@@ -39,7 +43,7 @@ public class SetView extends MainView implements HasUrlParameter<String> {
 
     @Override
     public void setParameter(BeforeEvent beforeEvent, String setNumber) {
-        set = inventoryService.getSetBy(setNumber);
+        set = setService.getSetBy(setNumber);
         generalInfo.fillWith(set);
         partsGrid.setItems(inventoryService.getPartsForSetNumber(set.getSetNumber()));
     }

@@ -3,6 +3,7 @@ package be.landtlord.legocollection.front.minifigure;
 import be.landtlord.legocollection.front.MainView;
 import be.landtlord.legocollection.front.parts.PartsListComponent;
 import be.landtlord.legocollection.inventory.inventories.boundary.InventoryService;
+import be.landtlord.legocollection.inventory.minifigures.boundary.MiniFigureService;
 import be.landtlord.legocollection.inventory.minifigures.entity.MiniFigure;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -25,9 +26,12 @@ public class MiniFigureView extends MainView implements HasUrlParameter<String> 
 
     private InventoryService inventoryService;
 
+    private MiniFigureService miniFigureService;
+
     @Autowired
-    public MiniFigureView(InventoryService inventoryService) {
+    public MiniFigureView(InventoryService inventoryService, MiniFigureService miniFigureService) {
         this.inventoryService = inventoryService;
+        this.miniFigureService = miniFigureService;
         generalInfo = new MiniFigureGeneralInfo(inventoryService);
         generalInfo.setHeight("50%");
         partsGrid = new PartsListComponent();
@@ -37,7 +41,7 @@ public class MiniFigureView extends MainView implements HasUrlParameter<String> 
 
     @Override
     public void setParameter(BeforeEvent beforeEvent, String setNumber) {
-        miniFigure = inventoryService.getMiniFigureBy(setNumber);
+        miniFigure = miniFigureService.getMiniFigureBy(setNumber);
         generalInfo.fillWith(miniFigure);
         partsGrid.setItems(inventoryService.getPartsForMiniFigNumber(miniFigure.getMiniFigureNumber()));
     }

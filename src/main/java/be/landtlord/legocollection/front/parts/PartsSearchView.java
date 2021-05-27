@@ -2,6 +2,7 @@ package be.landtlord.legocollection.front.parts;
 
 import be.landtlord.legocollection.front.MainView;
 import be.landtlord.legocollection.inventory.inventories.boundary.InventoryService;
+import be.landtlord.legocollection.inventory.parts.boundary.PartsService;
 import be.landtlord.legocollection.inventory.parts.entity.Part;
 import be.landtlord.legocollection.inventory.sets.entity.Set;
 import com.vaadin.flow.component.UI;
@@ -24,11 +25,11 @@ public class PartsSearchView extends MainView {
     private HorizontalLayout searchBar = new HorizontalLayout();
     private Grid<Part> partsGrid = new Grid();
 
-    private InventoryService inventoryService;
+    private PartsService partService;
 
     @Autowired
-    public PartsSearchView(InventoryService inventoryService) {
-        this.inventoryService = inventoryService;
+    public PartsSearchView(PartsService partService) {
+        this.partService = partService;
         setGrid();
         setSearchBar();
         content.add(searchBar, partsGrid);
@@ -69,7 +70,7 @@ public class PartsSearchView extends MainView {
     }
 
     private void setGridData(String partNumber) {
-        List<Part> parts = inventoryService.finByPartNumberContains(partNumber);
+        List<Part> parts = partService.finByPartNumberContains(partNumber);
         partsGrid.setItems(parts);
         partsGrid.setVisible(true);
     }

@@ -2,6 +2,7 @@ package be.landtlord.legocollection.front.parts;
 
 import be.landtlord.legocollection.front.MainView;
 import be.landtlord.legocollection.inventory.inventories.boundary.InventoryService;
+import be.landtlord.legocollection.inventory.parts.boundary.PartsService;
 import be.landtlord.legocollection.inventory.parts.entity.Part;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
@@ -25,7 +26,7 @@ public class PartView extends MainView implements HasUrlParameter<String> {
     private Part part;
 
     @Autowired
-    private InventoryService inventoryService;
+    private PartsService partsService;
 
     public PartView() {
         content.add(image, info);
@@ -34,7 +35,7 @@ public class PartView extends MainView implements HasUrlParameter<String> {
 
     @Override
     public void setParameter(BeforeEvent beforeEvent, String partNumber) {
-        part = inventoryService.getPartBy(partNumber);
+        part = partsService.getPartBy(partNumber);
         if (Objects.nonNull(part.getImageUrl())) {
             image.setSrc(part.getImageUrl());
         }

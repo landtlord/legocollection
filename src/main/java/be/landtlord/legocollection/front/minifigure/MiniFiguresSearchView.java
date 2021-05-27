@@ -2,8 +2,8 @@ package be.landtlord.legocollection.front.minifigure;
 
 import be.landtlord.legocollection.front.MainView;
 import be.landtlord.legocollection.inventory.inventories.boundary.InventoryService;
+import be.landtlord.legocollection.inventory.minifigures.boundary.MiniFigureService;
 import be.landtlord.legocollection.inventory.minifigures.entity.MiniFigure;
-import be.landtlord.legocollection.inventory.parts.entity.Part;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -24,11 +24,11 @@ public class MiniFiguresSearchView extends MainView {
     private HorizontalLayout searchBar = new HorizontalLayout();
     private Grid<MiniFigure> grid = new Grid();
 
-    private InventoryService inventoryService;
+    private MiniFigureService miniFigureService;
 
     @Autowired
-    public MiniFiguresSearchView(InventoryService inventoryService) {
-        this.inventoryService = inventoryService;
+    public MiniFiguresSearchView(MiniFigureService miniFigureService) {
+        this.miniFigureService = miniFigureService;
         setGrid();
         setSearchBar();
         content.add(searchBar, grid);
@@ -69,7 +69,7 @@ public class MiniFiguresSearchView extends MainView {
     }
 
     private void setGridData(String setNumber) {
-        List<MiniFigure> miniFigures = inventoryService.findByMiniFigureNumberContains(setNumber);
+        List<MiniFigure> miniFigures = miniFigureService.findByMiniFigureNumberContains(setNumber);
         grid.setItems(miniFigures);
         grid.setVisible(true);
     }

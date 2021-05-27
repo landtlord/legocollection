@@ -3,10 +3,10 @@ package be.landtlord.legocollection.front.set;
 import be.landtlord.legocollection.front.MainView;
 import be.landtlord.legocollection.inventory.inventories.boundary.InventoryService;
 import be.landtlord.legocollection.inventory.inventories.entity.UserInventorySet;
+import be.landtlord.legocollection.inventory.sets.boundary.SetService;
 import be.landtlord.legocollection.inventory.sets.entity.Set;
 import be.landtlord.legocollection.user.entity.User;
 import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -28,6 +28,8 @@ public class MySetSearchView extends MainView {
     private Grid<UserInventorySet> setsGrid = new Grid();
 
     private InventoryService inventoryService;
+
+    private SetService setService;
 
     @Autowired
     public MySetSearchView(InventoryService inventoryService) {
@@ -55,12 +57,12 @@ public class MySetSearchView extends MainView {
     }
 
     private String getSetName(UserInventorySet userInventorySet) {
-        return inventoryService.getSetBy(userInventorySet.getInventory().getSetNumber()).getName();
+        return setService.getSetBy(userInventorySet.getInventory().getSetNumber()).getName();
     }
 
     private Image setImageOnGrid(UserInventorySet userInventorySet) {
         Image image = new Image();
-        Set set = inventoryService.getSetBy(userInventorySet.getInventory().getSetNumber());
+        Set set = setService.getSetBy(userInventorySet.getInventory().getSetNumber());
         if (Objects.nonNull(set.getImageUrl())) {
             image.setSrc(set.getImageUrl());
         }

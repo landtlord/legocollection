@@ -5,6 +5,7 @@ import be.landtlord.legocollection.front.parts.MyPartListComponent;
 import be.landtlord.legocollection.inventory.inventories.boundary.InventoryService;
 import be.landtlord.legocollection.inventory.inventories.entity.UserInventoryPart;
 import be.landtlord.legocollection.inventory.inventories.entity.UserInventorySet;
+import be.landtlord.legocollection.inventory.sets.boundary.SetService;
 import be.landtlord.legocollection.inventory.sets.entity.Set;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -26,6 +27,9 @@ public class MySetView extends MainView implements HasUrlParameter<String> {
     private MyPartListComponent parts;
 
     @Autowired
+    private SetService setService;
+
+    @Autowired
     public MySetView(InventoryService inventoryService) {
         this.inventoryService = inventoryService;
         setGeneralInfo = new MySetGeneralInfo(inventoryService);
@@ -38,7 +42,7 @@ public class MySetView extends MainView implements HasUrlParameter<String> {
     @Override
     public void setParameter(BeforeEvent event, String id) {
         userInventorySet = inventoryService.getUserInventorySetBy(id);
-        Set set = inventoryService.getSetBy(userInventorySet.getInventory().getSetNumber());
+        Set set = setService.getSetBy(userInventorySet.getInventory().getSetNumber());
         setGeneralInfo.fillWith(set);
         parts.setItems(inventoryService.getUserInventoryPartsByUserInventorySet(userInventorySet).stream());
     }

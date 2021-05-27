@@ -6,6 +6,7 @@ import be.landtlord.legocollection.front.parts.PartsListComponent;
 import be.landtlord.legocollection.inventory.inventories.boundary.InventoryService;
 import be.landtlord.legocollection.inventory.inventories.entity.UserInventoryMiniFig;
 import be.landtlord.legocollection.inventory.inventories.entity.UserInventoryPart;
+import be.landtlord.legocollection.inventory.minifigures.boundary.MiniFigureService;
 import be.landtlord.legocollection.inventory.minifigures.entity.MiniFigure;
 import be.landtlord.legocollection.inventory.sets.entity.Set;
 import com.vaadin.flow.component.html.Image;
@@ -32,9 +33,12 @@ public class MyMiniFigureView extends MainView implements HasUrlParameter<String
 
     private InventoryService inventoryService;
 
+    private MiniFigureService miniFigureService;
+
     @Autowired
-    public MyMiniFigureView(InventoryService inventoryService) {
+    public MyMiniFigureView(InventoryService inventoryService, MiniFigureService miniFigureService) {
         this.inventoryService = inventoryService;
+        this.miniFigureService = miniFigureService;
         generalInfo = new MiniFigureGeneralInfo(inventoryService);
         generalInfo.setHeight("50%");
         partsGrid = new MyPartListComponent(inventoryService);
@@ -45,16 +49,8 @@ public class MyMiniFigureView extends MainView implements HasUrlParameter<String
     @Override
     public void setParameter(BeforeEvent beforeEvent, String id) {
         userInventoryMiniFig = inventoryService.getUserInventoryMiniFigureBy(id);
-        MiniFigure miniFigure = inventoryService.getMiniFigureBy(userInventoryMiniFig.getInventory().getSetNumber());
+        MiniFigure miniFigure = miniFigureService.getMiniFigureBy(userInventoryMiniFig.getInventory().getSetNumber());
         generalInfo.fillWith(miniFigure);
         partsGrid.setItems(inventoryService.getUserInventoryPartsByUserInventoryMiniFigure(userInventoryMiniFig));
-    }
-
-    private HorizontalLayout getGeneralInfo() {
-        MiniFigure miniFigure = inventoryService.getMiniFigureBy(userInventoryMiniFig.getInventory().getSetNumber());
-        HorizontalLayout generalInfo = new HorizontalLayout();
-        Image image = new Image(miniFigure.getImageUrl(), "image");
-        generalInfo.add(image);
-        return generalInfo;
     }
 }

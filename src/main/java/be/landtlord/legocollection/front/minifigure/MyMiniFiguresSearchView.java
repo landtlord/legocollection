@@ -1,13 +1,12 @@
 package be.landtlord.legocollection.front.minifigure;
 
 import be.landtlord.legocollection.front.MainView;
-import be.landtlord.legocollection.front.set.MySetView;
 import be.landtlord.legocollection.inventory.inventories.boundary.InventoryService;
 import be.landtlord.legocollection.inventory.inventories.entity.UserInventoryMiniFig;
+import be.landtlord.legocollection.inventory.minifigures.boundary.MiniFigureService;
 import be.landtlord.legocollection.inventory.minifigures.entity.MiniFigure;
 import be.landtlord.legocollection.user.entity.User;
 import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -28,10 +27,13 @@ public class MyMiniFiguresSearchView extends MainView {
     private HorizontalLayout searchBar = new HorizontalLayout();
     private Grid<UserInventoryMiniFig> setsGrid = new Grid();
 
+    private MiniFigureService miniFigureService;
+
     private InventoryService inventoryService;
 
     @Autowired
-    public MyMiniFiguresSearchView(InventoryService inventoryService) {
+    public MyMiniFiguresSearchView(MiniFigureService miniFigureService, InventoryService inventoryService) {
+        this.miniFigureService = miniFigureService;
         this.inventoryService = inventoryService;
         setGrid();
         setSearchBar();
@@ -56,12 +58,12 @@ public class MyMiniFiguresSearchView extends MainView {
     }
 
     private String getSetName(UserInventoryMiniFig userInventoryMiniFig) {
-        return inventoryService.getMiniFigureBy(userInventoryMiniFig.getInventory().getSetNumber()).getName();
+        return miniFigureService.getMiniFigureBy(userInventoryMiniFig.getInventory().getSetNumber()).getName();
     }
 
     private Image setImageOnGrid(UserInventoryMiniFig userInventorySet) {
         Image image = new Image();
-        MiniFigure miniFigure = inventoryService.getMiniFigureBy(userInventorySet.getInventory().getSetNumber());
+        MiniFigure miniFigure = miniFigureService.getMiniFigureBy(userInventorySet.getInventory().getSetNumber());
         if (Objects.nonNull(miniFigure.getImageUrl())) {
             image.setSrc(miniFigure.getImageUrl());
         }

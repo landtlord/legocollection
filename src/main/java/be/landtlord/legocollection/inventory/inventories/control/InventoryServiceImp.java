@@ -27,11 +27,6 @@ import java.util.stream.Collectors;
 @Service
 public class InventoryServiceImp implements InventoryService {
     public static final String BASE_URL_REBRICKABLE = "https://rebrickable.com/api/v3/lego/";
-    @Autowired
-    private MiniFiguresRepository miniFiguresRepository;
-
-    @Autowired
-    private SetRepository setRepository;
 
     @Autowired
     private PartsRepository partsRepository;
@@ -51,116 +46,14 @@ public class InventoryServiceImp implements InventoryService {
     @Autowired
     private UserInventoryMinifigureRepository userInventoryMinifigureRepository;
 
-    @Override
-    public List<Set> findBySetNumberContains(String setNumber) {
-        List<Set> sets;
-        try {
-            RestTemplate restTemplate = new RestTemplate();
-            sets = restTemplate.getForObject(BASE_URL_REBRICKABLE + "sets/?key=7389fd1beac9dcda170fc71e5f536512&search=" + setNumber, SetListSearchAnswer.class).getResults();
-        } catch (RestClientException e) {
-            sets = setRepository.findAllBySetNumberContains(setNumber);
-        }
-        return sets;
-    }
-
-    @Override
-    @Transactional
-    public Set getSetBy(String setNumber) {
-        Optional<Set> optionalSet = setRepository.findById(setNumber);
-        return optionalSet.map(this::updateSet)
-                .orElseGet(() -> getSetFromApi(setNumber));
-    }
-
-    private Set updateSet(Set set) {
-        RestTemplate restTemplate = new RestTemplate();
-        Set setFromAPI = restTemplate.getForObject(BASE_URL_REBRICKABLE + "sets/" + set.getSetNumber() + "/?key=7389fd1beac9dcda170fc71e5f536512", Set.class);
-        if (Objects.isNull(set.getImageUrl())) {
-            set.setImageUrl(setFromAPI.getImageUrl());
-        }
-        return set;
-    }
-
-    private Set getSetFromApi(String setNumber) {
-        RestTemplate restTemplate = new RestTemplate();
-        Set set = restTemplate.getForObject(BASE_URL_REBRICKABLE + "sets/" + setNumber + "/?key=7389fd1beac9dcda170fc71e5f536512", Set.class);
-        return setRepository.save(set);
-    }
-
-    @Override
-    public List<MiniFigure> findByMiniFigureNumberContains(String miniFigureNumber) {
-        List<MiniFigure> miniFigures;
-        try {
-            RestTemplate restTemplate = new RestTemplate();
-            miniFigures = restTemplate.getForObject(BASE_URL_REBRICKABLE + "minifigs/?key=7389fd1beac9dcda170fc71e5f536512&search=" + miniFigureNumber, MiniFigureListSearchAnswer.class).getResults();
-        } catch (RestClientException e) {
-            miniFigures = miniFiguresRepository.findAllByMiniFigureNumberContains(miniFigureNumber);
-        }
-        return miniFigures;
-    }
-
-    @Override
-    public MiniFigure getMiniFigureBy(String miniFigureNumber) {
-        Optional<MiniFigure> optionalSet = miniFiguresRepository.findById(miniFigureNumber);
-        return optionalSet.map(this::updateMiniFigure)
-                .orElseGet(() -> getMiniFigureFromApi(miniFigureNumber));
-    }
-
-    private MiniFigure updateMiniFigure(MiniFigure miniFigure) {
-        RestTemplate restTemplate = new RestTemplate();
-        MiniFigure setFromAPI = restTemplate.getForObject(BASE_URL_REBRICKABLE + "minifigs/" + miniFigure.getMiniFigureNumber() + "/?key=7389fd1beac9dcda170fc71e5f536512", MiniFigure.class);
-        if (Objects.isNull(miniFigure.getImageUrl())) {
-            miniFigure.setImageUrl(setFromAPI.getImageUrl());
-        }
-        return miniFigure;
-    }
-
-    private MiniFigure getMiniFigureFromApi(String miniFigureNumber) {
-        RestTemplate restTemplate = new RestTemplate();
-        MiniFigure miniFigure = restTemplate.getForObject(BASE_URL_REBRICKABLE + "minifigs/" + miniFigureNumber + "/?key=7389fd1beac9dcda170fc71e5f536512", MiniFigure.class);
-        return miniFiguresRepository.save(miniFigure);
-    }
-
-    @Override
-    public List<Part> finByPartNumberContains(String partNumber) {
-        List<Part> partList;
-        try {
-            RestTemplate restTemplate = new RestTemplate();
-            partList = restTemplate.getForObject(BASE_URL_REBRICKABLE + "parts/?key=7389fd1beac9dcda170fc71e5f536512&search=" + partNumber, PartListSearchAnswer.class).getResults();
-        } catch (RestClientException e) {
-            partList = partsRepository.findByPartNumberContains(partNumber);
-        }
-        return partList;
-    }
-
-    @Override
-    @Transactional
-    public Part getPartBy(String partNumber) {
-        Optional<Part> optionalPart = partsRepository.findById(partNumber);
-        return optionalPart.map(this::updatePart)
-                .orElseGet(() -> getPartFromApi(partNumber));
-    }
-
-    private Part updatePart(Part part) {
-        RestTemplate restTemplate = new RestTemplate();
-        Part partFromApi = restTemplate.getForObject(BASE_URL_REBRICKABLE + "parts/" + part.getPartNumber() + "/?key=7389fd1beac9dcda170fc71e5f536512", Part.class);
-        if (Objects.isNull(part.getImageUrl())) {
-            part.setImageUrl(partFromApi.getImageUrl());
-        }
-        return part;
-    }
-
-    private Part getPartFromApi(String partNumber) {
-        RestTemplate restTemplate = new RestTemplate();
-        Part part = restTemplate.getForObject(BASE_URL_REBRICKABLE + "parts/" + partNumber + "/?key=7389fd1beac9dcda170fc71e5f536512", Part.class);
-        return partsRepository.save(part);
-    }
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Override
     @Transactional
     public List<InventoryParts> getPartsForSetNumber(String setNumber) {
         List<InventoryParts> inventoryParts;
         try {
-            RestTemplate restTemplate = new RestTemplate();
             inventoryParts = restTemplate.getForObject(BASE_URL_REBRICKABLE + "sets/" + setNumber + "/parts/?page_size=1000&key=7389fd1beac9dcda170fc71e5f536512&search=", InventoryPartsListSearchAnswer.class).getResults();
             List<Part> parts = inventoryParts.stream().map(InventoryParts::getPart).collect(Collectors.toList());
             parts.forEach(this::updateInRepoPart);
@@ -176,7 +69,6 @@ public class InventoryServiceImp implements InventoryService {
     public List<InventoryParts> getPartsForMiniFigNumber(String miniFigNumber) {
         List<InventoryParts> inventoryParts;
         try {
-            RestTemplate restTemplate = new RestTemplate();
             inventoryParts = restTemplate.getForObject(BASE_URL_REBRICKABLE + "minifigs/" + miniFigNumber + "/parts/?page_size=1000&key=7389fd1beac9dcda170fc71e5f536512&search=", InventoryPartsListSearchAnswer.class).getResults();
             List<Part> parts = inventoryParts.stream().map(InventoryParts::getPart).collect(Collectors.toList());
             parts.forEach(this::updateInRepoPart);
@@ -204,7 +96,7 @@ public class InventoryServiceImp implements InventoryService {
         userInventorySet.setUser(user);
         UserInventorySet save = userInventorySetsRepository.save(userInventorySet);
         List<InventoryParts> inventoryParts = inventoryPartsRepository.findByInventory(inventory);
-        inventoryParts.stream().forEach(inventoryPart -> getUserInventoryPart(user, userInventorySet, inventoryPart));
+        inventoryParts.forEach(inventoryPart -> getUserInventoryPart(user, userInventorySet, inventoryPart));
         return save;
     }
 
@@ -224,7 +116,7 @@ public class InventoryServiceImp implements InventoryService {
         userInventoryMiniFig.setUser(user);
         UserInventoryMiniFig save = userInventoryMinifigureRepository.save(userInventoryMiniFig);
         List<InventoryParts> inventoryParts = inventoryPartsRepository.findByInventory(inventory);
-        inventoryParts.stream().forEach(inventoryPart -> getUserInventoryPart(user, userInventoryMiniFig, inventoryPart));
+        inventoryParts.forEach(inventoryPart -> getUserInventoryPart(user, userInventoryMiniFig, inventoryPart));
         return save;
     }
 
@@ -239,13 +131,13 @@ public class InventoryServiceImp implements InventoryService {
     @Override
     public UserInventorySet getUserInventorySetBy(String id) {
         Long idLong = Long.parseLong(id);
-        return userInventorySetsRepository.findById(idLong).get();
+        return userInventorySetsRepository.findById(idLong).orElse(null);
     }
 
     @Override
     public UserInventoryMiniFig getUserInventoryMiniFigureBy(String id) {
         Long idLong = Long.parseLong(id);
-        return userInventoryMinifigureRepository.findById(idLong).get();
+        return userInventoryMinifigureRepository.findById(idLong).orElse(null);
     }
 
     @Override
