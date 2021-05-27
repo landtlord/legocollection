@@ -32,8 +32,9 @@ public class MySetSearchView extends MainView {
     private SetService setService;
 
     @Autowired
-    public MySetSearchView(InventoryService inventoryService) {
+    public MySetSearchView(InventoryService inventoryService,SetService setService) {
         this.inventoryService = inventoryService;
+        this.setService = setService;
         setGrid();
         setSearchBar();
         content.add(searchBar, setsGrid);

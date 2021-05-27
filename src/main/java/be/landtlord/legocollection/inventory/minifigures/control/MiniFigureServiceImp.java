@@ -5,6 +5,7 @@ import be.landtlord.legocollection.inventory.minifigures.boundary.MiniFigureServ
 import be.landtlord.legocollection.inventory.minifigures.boundary.MiniFiguresRepository;
 import be.landtlord.legocollection.inventory.minifigures.entity.MiniFigure;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 import static be.landtlord.legocollection.inventory.inventories.control.InventoryServiceImp.BASE_URL_REBRICKABLE;
 
+@Service
 public class MiniFigureServiceImp implements MiniFigureService {
     @Autowired
     private MiniFiguresRepository miniFiguresRepository;

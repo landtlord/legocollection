@@ -6,6 +6,7 @@ import be.landtlord.legocollection.inventory.parts.boundary.PartsRepository;
 import be.landtlord.legocollection.inventory.parts.boundary.PartsService;
 import be.landtlord.legocollection.inventory.parts.entity.Part;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 import static be.landtlord.legocollection.inventory.inventories.control.InventoryServiceImp.BASE_URL_REBRICKABLE;
 
+@Service
 public class PartsServiceImpl implements PartsService {
     @Autowired
     private PartsRepository partsRepository;
